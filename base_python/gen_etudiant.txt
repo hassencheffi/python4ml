@@ -1,0 +1,26 @@
+import os
+import random
+
+def generer_dossier_etudiant(nom_etudiant):
+    # Crée un dossier pour l'étudiant
+    dossier_etudiant = os.path.join("Dossiers_Etudiants", nom_etudiant)
+    os.makedirs(dossier_etudiant, exist_ok=True)
+
+    # Génère un fichier "notes.txt" avec des notes aléatoires pour 10 matières
+    with open(os.path.join(dossier_etudiant, "notes.txt"), "w") as fichier_notes:
+        for _ in range(10):
+            note = random.uniform(0, 20)  # Génère une note aléatoire entre 0 et 20
+            fichier_notes.write(f"{note:.2f}\n")
+
+def generer_dossiers_etudiants(liste_noms_etudiants):
+    for nom_etudiant in liste_noms_etudiants:
+        generer_dossier_etudiant(nom_etudiant)
+
+if __name__ == "__main__":
+    # Liste de noms d'étudiants
+    noms_etudiants = ["Amina M.", "Dalia F.", "Dhieb Y.", "Hanen L.", "Hassen C.","Hend M.","Kaouther K.","Karim J.","Manel B.","Moez C.","Rim M.","Saber HA.","Salwa S.","Samir BS.","Soulaimen S.","Zied A.","",""]
+
+    # Génère les dossiers et les fichiers "notes.txt" pour les étudiants
+    generer_dossiers_etudiants(noms_etudiants)
+
+    print("Dossiers des étudiants et fichiers 'notes.txt' générés avec succès.")
